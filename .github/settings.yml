@@ -1,6 +1,6 @@
 ---
 repository:
-  name: hetzner
+  name: ansible-hetzner
   description: Ansible role to configure Hetzner repository mirrors
   topics: ansible, role, ansible-role, hacktoberfest
 
