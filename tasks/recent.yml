@@ -5,9 +5,9 @@
   ansible.builtin.copy:
     content: |
       Types: deb
-      URIs: "{{ hetzner_baseurl }}"
-      Suites: "{{ hetzner_suites | join(' ') }}"
-      Components: "{{ hetzner_components | join(' ') }}"
+      URIs: {{ hetzner_baseurl }}
+      Suites: {{ hetzner_suites | join(' ') }}
+      Components: {{ hetzner_components | join(' ') }}
     dest: "/etc/apt/sources.list.d/{{ hetzner_filename }}.sources"
     owner: root
     group: root
