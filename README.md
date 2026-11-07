@@ -17,8 +17,10 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [hetzner_baseurl](#hetzner_baseurl)
+  - [hetzner_components](#hetzner_components)
   - [hetzner_filename](#hetzner_filename)
-  - [hetzner_repos](#hetzner_repos)
+  - [hetzner_suites](#hetzner_suites)
   - [hetzner_update_cache](#hetzner_update_cache)
 - [Discovered Tags](#discovered-tags)
 - [Dependencies](#dependencies)
@@ -33,6 +35,30 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 ## Default Variables
 
+### hetzner_baseurl
+
+Base URL for the Hetzner mirror
+
+#### Default value
+
+```YAML
+hetzner_baseurl: http://mirror.hetzner.de/ubuntu/packages
+```
+
+### hetzner_components
+
+List of components for the Hetzner mirror repositories
+
+#### Default value
+
+```YAML
+hetzner_components:
+  - main
+  - restricted
+  - universe
+  - multiverse
+```
+
 ### hetzner_filename
 
 Filename for the repo list
@@ -43,18 +69,18 @@ Filename for the repo list
 hetzner_filename: hetzner-mirror
 ```
 
-### hetzner_repos
+### hetzner_suites
 
-List of Hetzner repo mirrors
+List of suites for the Hetzner mirror repositories
 
 #### Default value
 
 ```YAML
-hetzner_repos:
-  - deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }} main restricted universe multiverse
-  - deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-updates main restricted universe multiverse
-  - deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-backports main restricted universe multiverse
-  - deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-security main restricted universe multiverse
+hetzner_suites:
+  - "{{ ansible_facts['distribution_release'] }}"
+  - "{{ ansible_facts['distribution_release'] }}-updates"
+  - "{{ ansible_facts['distribution_release'] }}-backports"
+  - "{{ ansible_facts['distribution_release'] }}-security"
 ```
 
 ### hetzner_update_cache
