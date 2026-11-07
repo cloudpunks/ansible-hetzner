@@ -1,0 +1,17 @@
+---
+- name: Write sources list
+  notify:
+    - Update apt
+  ansible.builtin.copy:
+    content: |
+      {% for item in hetzner_suites %}
+      deb {{ hetzner_baseurl }} {{ item }} {{ hetzner_components | join(' ') }}
+      {% endfor %}
+    dest: "/etc/apt/sources.list.d/{{ hetzner_filename }}.list"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  tags:
+    - hetzner
+
+...

@@ -1,11 +1,15 @@
 ---
-- name: Define apt repos
-  loop: "{{ hetzner_repos }}"
-  ansible.builtin.apt_repository:
-    repo: "{{ item }}"
-    filename: "{{ hetzner_filename }}"
-    update_cache: "{{ hetzner_update_cache }}"
-    state: present
+- name: Include legacy tasks
+  when:
+    - ansible_facts['distribution_version'] is version('24.04', '<')
+  ansible.builtin.include_tasks: legacy.yml
+  tags:
+    - hetzner
+
+- name: Include recent tasks
+  when:
+    - ansible_facts['distribution_version'] is version('24.04', '>=')
+  ansible.builtin.include_tasks: recent.yml
   tags:
     - hetzner
 

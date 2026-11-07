@@ -2,12 +2,22 @@
 # @var hetzner_filename:description: Filename for the repo list
 hetzner_filename: hetzner-mirror
 
-# @var hetzner_repos:description: List of Hetzner repo mirrors
-hetzner_repos:
-  - "deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }} main restricted universe multiverse"
-  - "deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-updates main restricted universe multiverse"
-  - "deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-backports main restricted universe multiverse"
-  - "deb http://mirror.hetzner.de/ubuntu/packages {{ ansible_facts['distribution_release'] }}-security main restricted universe multiverse"
+# @var hetzner_baseurl:description: Base URL for the Hetzner mirror
+hetzner_baseurl: http://mirror.hetzner.de/ubuntu/packages
+
+# @var hetzner_components:description: List of components for the Hetzner mirror repositories
+hetzner_components:
+  - main
+  - restricted
+  - universe
+  - multiverse
+
+# @var hetzner_suites:description: List of suites for the Hetzner mirror repositories
+hetzner_suites:
+  - "{{ ansible_facts['distribution_release'] }}"
+  - "{{ ansible_facts['distribution_release'] }}-updates"
+  - "{{ ansible_facts['distribution_release'] }}-backports"
+  - "{{ ansible_facts['distribution_release'] }}-security"
 
 # @var hetzner_update_cache:description: Update directly the cache
 hetzner_update_cache: true
